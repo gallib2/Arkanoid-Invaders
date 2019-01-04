@@ -1,0 +1,7 @@
+*.ide
+*.suo
+*.dll
+*.log
+*.meta
+*.info
+*.cache
