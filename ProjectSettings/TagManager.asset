@@ -12,6 +12,7 @@ TagManager:
   - BottomWall
   - Ball
   - Life
+  - BallPosition
   layers:
   - Default
   - TransparentFX

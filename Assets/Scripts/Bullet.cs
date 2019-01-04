@@ -7,15 +7,15 @@ public class Bullet : MonoBehaviour {
 
     public float speed = 30.0f;
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
 
     public Sprite explodedAlienImage;
 
 	// Use this for initialization
 	void Start () {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        rigidbody.velocity = Vector2.up * speed;
+        rb.velocity = Vector2.up * speed;
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

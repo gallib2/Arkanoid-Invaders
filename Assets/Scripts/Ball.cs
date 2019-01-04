@@ -15,14 +15,29 @@ public class Ball : MonoBehaviour {
     void Start () {
 
         rb = GetComponent<Rigidbody2D>();
-
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        Spaceship.OnSpaceShipDestroy += InitBallPosition;
+    }
+
+    private void OnDisable()
+    {
+        Spaceship.OnSpaceShipDestroy -= InitBallPosition;
+    }
+
+    private void InitBallPosition()
+    {
+        //rb.velocity = Vector2.zero;
+        inPlay = false;
+    }
+
+    // Update is called once per frame
+    void Update () {
         if(!inPlay && paddleTransorm == null)
         {
-            Destroy(gameObject);
+          //  Destroy(gameObject);
         }
         else if (!inPlay)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlienBullet : MonoBehaviour {
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
 
     public float speed = 30.0f;
 
@@ -13,9 +13,9 @@ public class AlienBullet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        rigidbody.velocity = Vector2.down * speed;
+        rb.velocity = Vector2.down * speed;
 		
 	}
 
@@ -26,17 +26,18 @@ public class AlienBullet : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             SoundManager.Instance.playOneShot(SoundManager.Instance.shipExplosion);
 
             collision.GetComponent<SpriteRenderer>().sprite = explodedSpaceShipImage;
 
             Destroy(gameObject);
-            Destroy(collision.gameObject, 0.5f);
+            //collision.gameObject.SetActive(false);
+            //Destroy(collision.gameObject, 0.5f);
         }
 
-        if(collision.tag == "Shield")
+        if (collision.tag == "Shield")
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);

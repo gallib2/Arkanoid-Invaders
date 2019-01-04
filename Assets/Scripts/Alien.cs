@@ -6,7 +6,7 @@ public class Alien : MonoBehaviour {
 
     public float speed = 30.0f;
 
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
 
     public Sprite startImage;
     public Sprite altImage;
@@ -26,9 +26,9 @@ public class Alien : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        rigidbody.velocity = new Vector2(1, 0) * speed;
+        rb.velocity = new Vector2(1, 0) * speed;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -40,10 +40,10 @@ public class Alien : MonoBehaviour {
     // turn in opposite direction
     private void Turn(int direction)
     {
-        Vector2 newVelocity = rigidbody.velocity;
+        Vector2 newVelocity = rb.velocity;
         newVelocity.x = speed * direction;
 
-        rigidbody.velocity = newVelocity;
+        rb.velocity = newVelocity;
     }
 
     // move down after hitting wall
