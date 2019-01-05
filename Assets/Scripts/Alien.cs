@@ -5,29 +5,23 @@ using UnityEngine;
 public class Alien : MonoBehaviour {
 
     public float speed = 30.0f;
-
     private Rigidbody2D rb;
-
     public Sprite startImage;
     public Sprite altImage;
     public SpriteRenderer spriteRenderer;
     public const int maxBullets = 5;
     public int numberOfCurrentBulletInAir = 0;
-
     public float secondsBeforeSpriteChange = 0.5f;
+    public static Transform initialPosition;
+    public GameObject alienBullet;
+    public Sprite explodedShipImage;
 
     public float NextFire { get; set; }
 
-    public GameObject alienBullet;
-
-    //public float minFireRateTime = 10.0f;
-    //public float maxFireRateTime = 20.0f;
-    //public float baseFireWaitTime = 10.0f;
-
-    public Sprite explodedShipImage;
-
 	// Use this for initialization
 	void Start () {
+
+        initialPosition = gameObject.transform;
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = new Vector2(1, 0) * speed;

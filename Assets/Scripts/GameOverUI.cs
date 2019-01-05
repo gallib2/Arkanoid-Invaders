@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour {
 
+    public AlienShooter alienShooter;
+
     public void Quit()
     {
-        Debug.Log("app quit...");
         Application.Quit();
     }
 
     public void Retry()
     {
+        Instantiate(alienShooter);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 }

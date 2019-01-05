@@ -12,33 +12,36 @@ public class AlienShooter : MonoBehaviour {
     public float maxFireRateTime = 20.0f;
     public float baseFireWaitTime = 10.0f;
 
+    private int numberOfCurrentAliens;
+    private int numberOfAliens;
+
     public GameObject alienBullet;
 
     GameObject[] aliens;
-    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		if(aliens == null)
         {
             aliens = GameObject.FindGameObjectsWithTag("Alien");
         }
 
-        baseFireWaitTime = 2.0f;//baseFireWaitTime + Random.Range(minFireRateTime, maxFireRateTime);
+        numberOfAliens = aliens.Length;
+        numberOfCurrentAliens = numberOfAliens;
 
-        Debug.Log("EnterStart");
+        baseFireWaitTime = 2.0f;//baseFireWaitTime + Random.Range(minFireRateTime, maxFireRateTime);
     }
 
     void OnEnable()
     {
+        Ball.OnAlienDead += AlienDead;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("base fire wite: " + baseFireWaitTime);
-        numberOfCurrentBulletInAir = 0;
+        //numberOfCurrentBulletInAir = 0;
     }
 
     // Update is called once per frame
@@ -47,7 +50,28 @@ public class AlienShooter : MonoBehaviour {
         int randomIndex = GetRandomIndex();
         GameObject randomAlien = aliens[randomIndex];
 
-        if(randomAlien != null)
+        CheckIfEndGame();
+
+        Shoot(randomAlien);
+
+    }
+
+    private void CheckIfEndGame()
+    {
+        if (numberOfCurrentAliens <= 0)
+        {
+            GameMaster.AllAliensDead();
+        }
+    }
+
+    public void AlienDead()
+    {
+        numberOfCurrentAliens--;
+    }
+
+    private void Shoot(GameObject randomAlien)
+    {
+        if (randomAlien != null)
         {
             if (Time.time > baseFireWaitTime && numberOfCurrentBulletInAir < maxBullets)
             {
@@ -58,8 +82,6 @@ public class AlienShooter : MonoBehaviour {
                 numberOfCurrentBulletInAir++;
             }
         }
-
-
     }
 
     private int GetRandomIndex()

@@ -12,6 +12,9 @@ public class GameMaster : MonoBehaviour {
     [SerializeField]
     private GameObject gameOverUI;
 
+    [SerializeField]
+    private GameObject gameEndUI;
+
     public static int RemainingLives
     {
         get { return _remainingLives; }
@@ -36,9 +39,20 @@ public class GameMaster : MonoBehaviour {
         _remainingLives = NumberOfLives;
     }
 
-    public void EndGame()
+    public void GameOver()
     {
         gameOverUI.SetActive(true);
+    }
+
+    public void EndGame()
+    {
+        //gameOverUI.SetActive(true);
+        gameEndUI.SetActive(true);
+    }
+
+    public static void AllAliensDead()
+    {
+        gameMaster.EndGame();
     }
 
     public static void PlayerHit()
@@ -46,7 +60,7 @@ public class GameMaster : MonoBehaviour {
         _remainingLives--;
         if(_remainingLives <= 0)
         {
-            gameMaster.EndGame();
+            gameMaster.GameOver();
         }
     }
 	
