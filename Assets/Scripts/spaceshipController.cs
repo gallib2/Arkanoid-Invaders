@@ -9,7 +9,7 @@ public class spaceshipController : MonoBehaviour {
 
     private void OnEnable()
     {
-        Spaceship.OnSpaceShipDestroy += OnSpaceshipDestroy;
+        Spaceship.OnSpaceShipHit += OnSpaceshipDestroy;
     }
 
     //private void OnDisable()

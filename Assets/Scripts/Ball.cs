@@ -19,12 +19,12 @@ public class Ball : MonoBehaviour {
 
     private void OnEnable()
     {
-        Spaceship.OnSpaceShipDestroy += InitBallPosition;
+        Spaceship.OnSpaceShipHit += InitBallPosition;
     }
 
     private void OnDisable()
     {
-        Spaceship.OnSpaceShipDestroy -= InitBallPosition;
+        Spaceship.OnSpaceShipHit -= InitBallPosition;
     }
 
     private void InitBallPosition()

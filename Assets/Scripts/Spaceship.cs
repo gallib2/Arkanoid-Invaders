@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour {
     public delegate void SpaceShipDestroyAction();
-    public static event SpaceShipDestroyAction OnSpaceShipDestroy;
+    public static event SpaceShipDestroyAction OnSpaceShipHit;
     public Sprite spaceshipImag;
+    public Vector3 initialTransform;
 
     public float speed = 30.0f;
 
     public GameObject theBullet;
+
+    private void Start()
+    {
+        initialTransform = new Vector3();
+        initialTransform = gameObject.transform.position;
+    }
+
+    private void InitTransform()
+    {
+        gameObject.transform.position = initialTransform;
+    }
 
     private void FixedUpdate()
     {
@@ -30,12 +42,10 @@ public class Spaceship : MonoBehaviour {
 	}
 
 
-    IEnumerator Example()
+    IEnumerator SetSpaceShipImage()
     {
-        print(Time.time);
         yield return new WaitForSeconds(0.5f);
         GetComponent<SpriteRenderer>().sprite = spaceshipImag;
-        print(Time.time);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,7 +53,12 @@ public class Spaceship : MonoBehaviour {
         if(collision.tag == "AlienBullet")
         {
             SpaceshipHit();
-            StartCoroutine(Example());
+            StartCoroutine(SetSpaceShipImage());
+            InitTransform();
+            if (OnSpaceShipHit != null)
+            {
+                OnSpaceShipHit();
+            }
         }
     }
 
@@ -54,32 +69,9 @@ public class Spaceship : MonoBehaviour {
 
         if (lifesStack.Count > 0)
         {
-            //Destroy(life);
             ((GameObject)lifesStack.Pop()).SetActive(false);
-            // Debug.Log("before calling on destroy");
-            //if (OnSpaceShipDestroy != null)
-            //{
-            //    OnSpaceShipDestroy();
-            //}
         }
     }
-
-    //private void OnDisable()
-    //{
-    //  //  Debug.Log("before get lifes");
-    //    GameObject life = GameObject.FindGameObjectWithTag("Life");
-    //    //Debug.Log("before if");
-    //    if (life != null)
-    //    {
-    //        //Destroy(life);
-    //        life.SetActive(false);
-    //       // Debug.Log("before calling on destroy");
-    //        if (OnSpaceShipDestroy != null)
-    //        {
-    //            OnSpaceShipDestroy();
-    //        }
-    //    }
-    //}
 
     //private void OnDestroy()
     //{
