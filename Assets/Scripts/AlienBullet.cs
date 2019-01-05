@@ -21,9 +21,9 @@ public class AlienBullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Wall")
+        if(collision.tag == "BottomWall")
         {
-            Destroy(gameObject);
+            DestroyBullet(gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
@@ -32,16 +32,22 @@ public class AlienBullet : MonoBehaviour {
 
             collision.GetComponent<SpriteRenderer>().sprite = explodedSpaceShipImage;
 
-            Destroy(gameObject);
+            DestroyBullet(gameObject);
             //collision.gameObject.SetActive(false);
             //Destroy(collision.gameObject, 0.5f);
         }
 
         if (collision.tag == "Shield")
         {
-            Destroy(gameObject);
+            DestroyBullet(gameObject);
             Destroy(collision.gameObject);
         }
+    }
+
+    private void DestroyBullet(GameObject bullet)
+    {
+        AlienShooter.numberOfCurrentBulletInAir--;
+        Destroy(bullet);
     }
 
     private void OnBecameInvisible()

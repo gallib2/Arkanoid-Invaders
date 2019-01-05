@@ -16,6 +16,8 @@ public class Alien : MonoBehaviour {
 
     public float secondsBeforeSpriteChange = 0.5f;
 
+    public float NextFire { get; set; }
+
     public GameObject alienBullet;
 
     //public float minFireRateTime = 10.0f;
@@ -31,6 +33,8 @@ public class Alien : MonoBehaviour {
         rb.velocity = new Vector2(1, 0) * speed;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        NextFire = Random.Range(3, 10);
 
        // StartCoroutine(ChangeAlienSprite());
 

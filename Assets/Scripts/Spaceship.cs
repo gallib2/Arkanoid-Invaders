@@ -64,13 +64,15 @@ public class Spaceship : MonoBehaviour {
 
     private void SpaceshipHit()
     {
-        GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
-        Stack lifesStack = new Stack(lifes);
+        //GameObject[] lifes = GameObject.FindGameObjectsWithTag("Life");
+        //Stack lifesStack = new Stack(lifes);
 
-        if (lifesStack.Count > 0)
-        {
-            ((GameObject)lifesStack.Pop()).SetActive(false);
-        }
+        //if (lifesStack.Count > 0)
+        //{
+        //    ((GameObject)lifesStack.Pop()).SetActive(false);
+        //}
+
+        GameMaster.PlayerHit();
     }
 
     //private void OnDestroy()

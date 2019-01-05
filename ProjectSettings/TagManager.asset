@@ -13,6 +13,7 @@ TagManager:
   - Ball
   - Life
   - BallPosition
+  - GameMaster
   layers:
   - Default
   - TransparentFX
