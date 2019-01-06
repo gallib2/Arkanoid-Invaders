@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
-    public delegate void AlienDestroyAction();
-    public static event AlienDestroyAction OnAlienDead;
+    //public delegate void AlienDestroyAction();
+    //public static event AlienDestroyAction OnAlienDead;
 
     Rigidbody2D rb;
     public float thrust = 500.0f;
@@ -83,10 +83,11 @@ public class Ball : MonoBehaviour {
 
             //Destroy(gameObject);
             //AlienShooter.AlienDead();
-            if (OnAlienDead != null)
-            {
-                OnAlienDead();
-            }
+            //if (OnAlienDead != null)
+            //{
+            //    OnAlienDead();
+            //}
+
             Destroy(collision.gameObject, 0.5f);
         }
     }

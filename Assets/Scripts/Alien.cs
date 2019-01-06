@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Alien : MonoBehaviour {
+    public delegate void AlienDestroyAction();
+    public static event AlienDestroyAction OnAlienDead;
 
     public float speed = 30.0f;
     private Rigidbody2D rb;
@@ -51,6 +53,14 @@ public class Alien : MonoBehaviour {
         position.y -= 1;
 
         transform.position = position;
+    }
+
+    private void OnDestroy()
+    {
+        if (OnAlienDead != null)
+        {
+            OnAlienDead();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

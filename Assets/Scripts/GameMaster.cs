@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour {
 
     public static GameMaster gameMaster;
-    private const int NumberOfLives = 1;
+    private const int NumberOfLives = 3;
     private static int _remainingLives = NumberOfLives;
 
     [SerializeField]

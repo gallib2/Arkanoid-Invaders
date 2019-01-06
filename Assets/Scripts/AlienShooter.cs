@@ -29,12 +29,14 @@ public class AlienShooter : MonoBehaviour {
         numberOfAliens = aliens.Length;
         numberOfCurrentAliens = numberOfAliens;
 
+        Debug.Log("numberOfCurrentAliens: " + numberOfCurrentAliens);
+
         baseFireWaitTime = 2.0f;//baseFireWaitTime + Random.Range(minFireRateTime, maxFireRateTime);
     }
 
     void OnEnable()
     {
-        Ball.OnAlienDead += AlienDead;
+        Alien.OnAlienDead += AlienDead;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
