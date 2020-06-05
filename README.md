@@ -1,5 +1,8 @@
 # Arkanoid-Invaders
 
+Arkanoid-Invaders is a Hyper Casual game that combines Arkanoid and Space Invaders into one game!
+
+
 ## Getting Started
 #### Follow the below instructions to get started with the source code:
 * For start you will need **Unity Game Engine** & **Basic knowledge about Unity and C#**
